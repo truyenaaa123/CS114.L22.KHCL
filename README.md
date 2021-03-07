@@ -11,8 +11,8 @@
 * Tên môn học: Machine Learning - Máy học
 * Mã lớp: CS114.L22.KHCL
 * Giảng viên:
-* *   PGS.TS. Lê Đình Duy - duyld@uit.edu.vn
-* *  Ths. Phạm Nguyễn Trường An - truonganpn@uit.edu.vn
+  *   PGS.TS. Lê Đình Duy - duyld@uit.edu.vn
+  *  Ths. Phạm Nguyễn Trường An - truonganpn@uit.edu.vn
 
 ## Thông tin nhóm
 <a name="thongtinnhom"></a>
