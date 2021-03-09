@@ -20,7 +20,7 @@
 | :---: | --- | --- | --- |
 | 1 | Trần Văn Truyền | 19522448 | [Truyền](https://github.com/truyenaaa123/CS114.L22.KHCL) |
 | 2 | Nguyễn Hữu Hưng | 19521571 | [Hưng](https://github.com/hunghuu19012001/CS114.L22.KHCL) |
-| 3 |  |  |  |
+| 3 | Lê Quang Vinh | 19522093 | [Vinh](https://github.com/ltv1873/levinhquang.github.io) |
 
 ## Quá trình
 <a name="quatrinh"></a>
