@@ -1,0 +1,29 @@
+Chuyền giọng nói thành văn bản
+Input: File âm thanh giọng nói độc thoại tự sự của một người
+Ouput: File văn bản chứa phần văn bản được chuyển từ âm thanh sang
+Data: lượng lớn các video youtube, các trang web học tiếng anh đã được sub sẵn
+
+Xác định Email có spam không
+Input: Tiêu đề, người gửi, nội dung của email được gửi vào hộp thư ở dạng chuỗi
+Ouput: True/False, trong đó True là email spam còn False là email không spam
+Data: Lấy từ email của bản thân đã phân loại spam hay không spam
+
+Phát hiện biển báo
+Input: Hình ảnh của một biển báo giao thông dạng ma trận pixel
+Ouput: Tên các biển báo giao thông dạng chuỗi
+Data: Tập ảnh các biển báo giao thông được gán nhãn sẵn
+
+Nhận diện khuôn mặt người
+Input: Bức ảnh một hoặc nhiều người ở dạng ma trận pixel
+Ouput: Bức ảnh đã có các khung viền xung quanh các khuôn mặt được nhận diện ở dạng file png
+Data: Các bức ảnh được người dùng facebook tự tag bạn vào
+
+Dự đoán thời tiết
+Input: Nhiệt độ(số), độ ẩm(số), thời điểm dự đoán(ngày/tháng), vị trí(số), độ cao(số)
+Ouput: Kiểu thời tiết(chuỗi) tại thời điểm đó
+Data: Dữ liệu ở các đài khí tượng ở khắp nơi trên thế giới trong nhiều năm
+
+Dự đoán bệnh ung thư
+Input: Ảnh chụp X-quang, ảnh siêu âm, ảnh CT, ảnh mri đều ở dạng ma trận pixel
+Ouput: Tên loại ung thư mắc phải(string)
+Data: Dữ liệu bệnh án ở các bệnh viện
