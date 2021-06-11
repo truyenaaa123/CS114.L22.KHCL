@@ -20,7 +20,8 @@ class ScrapSpider(scrapy.Spider):
     def parse(self, response):
         
         #Điều kiện dừng (số trang)
-        if int(response.url.split('/')[-1][6:]) >= 1200:
+        page_numper = int(response.url.split('/')[-1][6:])
+        if page_numper >= 1200:
             return
 
         #Crawl dử liệu
@@ -36,7 +37,7 @@ class ScrapSpider(scrapy.Spider):
             }
         
         #Sang trang kế
-        next_page = "https://www.huffpost.com" + response.css('a.pagination__next-link::attr(href)').get()
+        next_page = "https://www.huffingtonpost.co.uk/news/?page=" + str(page_numper+1)
         if next_page is not None:
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse,headers=headers)
