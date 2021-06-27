@@ -3,10 +3,10 @@ from scrapy.http import headers
 
 
 class ScrapSpider(scrapy.Spider):
-    
+
     #thông số spider
-    name = "scrap"
-    domain = "https://www.huffpost.com"
+    name = "foxnews"
+    allowed_domains  = "https://www.foxnews.com/"
     start_urls = {
         'https://www.huffingtonpost.co.uk/news/?page=2',
     }
@@ -19,9 +19,9 @@ class ScrapSpider(scrapy.Spider):
 
     #Hàm crawl thông tin
     def parse(self, response):
-        
+
         #Điều kiện dừng (số trang)
-        page_numper = int(response.url.split('/')[-1][6:])  
+        page_numper = int(response.url.split('/')[-1][6:])
         if page_numper >= 1200:
             return
 
@@ -36,13 +36,10 @@ class ScrapSpider(scrapy.Spider):
                 'article_link': web,
                 #'time': new_request.meta['time']
             }
-        
+
         #Sang trang kế
         next_page = "https://www.huffingtonpost.co.uk/news/?page=" + str(page_numper+1)
         if next_page is not None:
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse,headers=headers)
 
-
-    def parse_time(self, response):
-        return response.css('.timestamp span::text').get()

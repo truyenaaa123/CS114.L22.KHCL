@@ -5,9 +5,13 @@ from scrapy.http import headers
 class ScrapSpider(scrapy.Spider):
 
     #thông số spider
-    name = "weeklyworldnews"
+    name = "dailybonnet"
     start_urls = {
-        'https://weeklyworldnews.com/category/headlines/page/1/',
+        'https://dailybonnet.com/category/quiz/',
+        'https://dailybonnet.com/category/mennonitelife/',
+        'https://dailybonnet.com/category/food-and-drink/',
+        'https://dailybonnet.com/category/church/',
+        'https://dailybonnet.com/category/outsiders/',
     }
 
     #Hàm request
@@ -29,16 +33,17 @@ class ScrapSpider(scrapy.Spider):
         #     return
 
         #Crawl dử liệu
-        for post  in response.css(".inside-article"):
+        for post  in response.css('.mh-posts-list-header'):
             yield{
                 'is_sarcastic': 1,
-                'headline': post.css('.entry-title a::text').get(),
-                'article_link': post.css('.entry-title a::attr(href)').get(),
-                'time': post.css('.entry-date::text').get()[-4:]
+                'headline': post.css('.mh-posts-list-title a::text').get()[-5:6:-1][::-1],
+                'article_link': post.css('.mh-posts-list-title a::attr(href)').get(),
+                'time': post.css('.updated a::text').get()[-4:]
             }
 
         #Sang trang kế
-        next_page = "https://weeklyworldnews.com/category/headlines/page/" + str(page_numper+1)
+        next_page = response.css('.next.page-numbers::attr(href)').get()
         if next_page is not None:
             next_page = response.urljoin(next_page)
             yield scrapy.Request(next_page, callback=self.parse)
+

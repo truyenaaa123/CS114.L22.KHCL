@@ -5,9 +5,9 @@ from scrapy.http import headers
 class ScrapSpider(scrapy.Spider):
 
     #thông số spider
-    name = "weeklyworldnews"
+    name = "thepoke"
     start_urls = {
-        'https://weeklyworldnews.com/category/headlines/page/1/',
+        'https://www.thepoke.co.uk/',
     }
 
     #Hàm request
@@ -17,7 +17,10 @@ class ScrapSpider(scrapy.Spider):
 
     #Hàm crawl thông tin
     def parse(self, response):
+        for rp in response.css('.nav-menu li a::attr(href)').getall():
+            yield scrapy.Request(rp, callback=self.parse_full)
 
+    def parse_full(self, response):
         #Điều kiện dừng (số trang)
         if response.status == 200:
             try:
@@ -25,20 +28,22 @@ class ScrapSpider(scrapy.Spider):
             except:
                 page_numper = 1
         else : return
-        # if page_numper >= 1200:
-        #     return
 
         #Crawl dử liệu
-        for post  in response.css(".inside-article"):
+        for post  in response.css('.boxgrid'):
             yield{
+                'page': response.url,
                 'is_sarcastic': 1,
-                'headline': post.css('.entry-title a::text').get(),
-                'article_link': post.css('.entry-title a::attr(href)').get(),
-                'time': post.css('.entry-date::text').get()[-4:]
+                'headline': post.css('.txt p::text').get(),
+                'article_link': post.css('a::attr(href)').get(),
+                'time': "NaN"
             }
 
         #Sang trang kế
-        next_page = "https://weeklyworldnews.com/category/headlines/page/" + str(page_numper+1)
+        if page_numper == 1:
+            next_page = response.url + "page/2/"
+        else:
+            next_page = response.url[:-1*(len(str(page_numper))+1)] + str(page_numper+1) + '/'
         if next_page is not None:
             next_page = response.urljoin(next_page)
-            yield scrapy.Request(next_page, callback=self.parse)
+            yield scrapy.Request(next_page, callback=self.parse_full)
